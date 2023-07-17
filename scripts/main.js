@@ -36,44 +36,46 @@ images.forEach((element, i) => {
     //Creates a variable that's an empty string by default
     let imageClasses = "";
 
-    //"if...else" construct 
+    //"if...else" construct puts "active" in "imageClasses" if i === 0 (when the carousel is created)
     if (i === 0) {
         imageClasses = "active";
     } else {
         imageClasses = null;
     }
 
-    const carouselImgContainer = document.createElement("div");
+    /* Creates img container, appends in carousel and adds classes */
+    const carouselImgContainerElement = document.createElement("div");
 
-    carouselContainer.append(carouselImgContainer);
+    carouselContainerElement.append(carouselImgContainerElement);
 
-    carouselImgContainer.classList.add("carousel_img_container", "position-absolute", "top-0", "start-0", imageClasses);
+    carouselImgContainerElement.classList.add("carousel_img_container", "position-absolute", "top-0", "start-0", imageClasses);
 
-    const carouselImg = document.createElement("img");
+    /* Creates img element, appends in carousel and adds src attribute and classes */
+    const carouselImgElement = document.createElement("img");
 
-    carouselImgContainer.append(carouselImg);
+    carouselImgContainerElement.append(carouselImgElement);
 
-    carouselImg.setAttribute("src", element.image);
+    carouselImgElement.setAttribute("src", element.image);
 
-    carouselImg.classList.add("w-100", "h-100");
+    carouselImgElement.classList.add("w-100", "h-100");
 
-    const carouselTextContainer = document.createElement("div");
+    const carouselTextContainerElement = document.createElement("div");
 
-    carouselImgContainer.append(carouselTextContainer);
+    carouselImgContainerElement.append(carouselTextContainerElement);
 
-    carouselTextContainer.classList.add("carousel_text_container", "ps-2", "text-white");
+    carouselTextContainerElement.classList.add("carousel_text_container", "ps-2", "text-white");
 
-    const carouselImgTitle = document.createElement("h4");
+    const carouselImgTitleElement = document.createElement("h4");
 
-    carouselTextContainer.append(carouselImgTitle);
+    carouselTextContainerElement.append(carouselImgTitleElement);
 
-    carouselImgTitle.innerHTML += element.title;
+    carouselImgTitleElement.innerHTML += element.title;
 
-    const carouselImgText = document.createElement("p");
+    const carouselImgTextElement = document.createElement("p");
 
-    carouselTextContainer.append(carouselImgText);
+    carouselTextContainerElement.append(carouselImgTextElement);
 
-    carouselImgText.innerHTML += element.text;
+    carouselImgTextElement.innerHTML += element.text;
 
     
 
