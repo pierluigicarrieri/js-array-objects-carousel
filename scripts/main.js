@@ -1,3 +1,9 @@
+const carouselContainer = document.getElementById("carousel_container");
+
+let currentImgIndex = 0;
+
+const imagesList = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
+
 const images = [
     {
         image: "img/01.webp",
@@ -21,3 +27,64 @@ const images = [
         text: "Marvel\'s Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.",
     }
 ];
+
+for (let i = 0; i < imagesList.length; i++) {
+
+    const currentImage = imagesList[i];
+
+    let imageClasses = "";
+
+    if (i === 0) {
+
+        imageClasses = "active";
+
+    }
+
+    carouselContainer.innerHTML += `<div class="carousel_img_container position-absolute top-0 start-0 ${imageClasses}">
+    <img src="img/${currentImage}" alt="" class="w-100 h-100">
+    </div>`
+
+}
+
+const backBtn = document.getElementById("back_btn");
+const fwdBtn = document.getElementById("fwd_btn");
+
+fwdBtn.addEventListener("click", function() {
+
+    const imgElements = document.querySelectorAll(".carousel_img_container");
+
+    imgElements[currentImgIndex].classList.remove("active");
+
+    currentImgIndex++;
+
+    if (currentImgIndex > imgElements.length -1) {
+
+        currentImgIndex = 0;
+
+    }
+
+    imgElements[currentImgIndex].classList.add("active");
+
+}
+
+);
+
+backBtn.addEventListener("click", function() {
+
+    const imgElements = document.querySelectorAll(".carousel_img_container");
+
+    imgElements[currentImgIndex].classList.remove("active");
+
+    currentImgIndex--;
+
+    if (currentImgIndex < 0) {
+
+        currentImgIndex = imgElements.length - 1;
+        
+    }
+
+    imgElements[currentImgIndex].classList.add("active");
+
+}
+
+);
