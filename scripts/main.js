@@ -2,8 +2,6 @@ const carouselContainer = document.getElementById("carousel_container");
 
 let currentImgIndex = 0;
 
-const imagesList = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
-
 const images = [
     {
         image: "img/01.webp",
@@ -28,28 +26,28 @@ const images = [
     }
 ];
 
-for (let i = 0; i < imagesList.length; i++) {
-
-    const currentImage = imagesList[i];
+images.forEach((element, i) => {
 
     let imageClasses = "";
 
     if (i === 0) {
-
         imageClasses = "active";
-
     }
 
     carouselContainer.innerHTML += `<div class="carousel_img_container position-absolute top-0 start-0 ${imageClasses}">
-    <img src="img/${currentImage}" alt="" class="w-100 h-100">
+    <img src="${element.image}" alt="" class="w-100 h-100">
     </div>`
 
-}
+})
 
 const backBtn = document.getElementById("back_btn");
 const fwdBtn = document.getElementById("fwd_btn");
 
-fwdBtn.addEventListener("click", function() {
+fwdBtn.addEventListener("click", goToNxtImg);
+
+backBtn.addEventListener("click", goToPreviousImg);
+
+function goToNxtImg() {
 
     const imgElements = document.querySelectorAll(".carousel_img_container");
 
@@ -67,9 +65,7 @@ fwdBtn.addEventListener("click", function() {
 
 }
 
-);
-
-backBtn.addEventListener("click", function() {
+function goToPreviousImg() {
 
     const imgElements = document.querySelectorAll(".carousel_img_container");
 
@@ -86,5 +82,3 @@ backBtn.addEventListener("click", function() {
     imgElements[currentImgIndex].classList.add("active");
 
 }
-
-);
