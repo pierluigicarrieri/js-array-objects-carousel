@@ -18,6 +18,12 @@
     opacity: 1
 }
 
+.carousel_text_container {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
 img {
     aspect-ratio: 16/9;
     object-fit: cover;

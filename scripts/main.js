@@ -1,7 +1,11 @@
-const carouselContainer = document.getElementById("carousel_container");
 
+//Creates variable for the carousel container
+const carouselContainerElement = document.getElementById("carousel_container");
+
+//Creaes global variable to decide which image is visualized
 let currentImgIndex = 0;
 
+//Creates array of objects with carousel content
 const images = [
     {
         image: "img/01.webp",
@@ -26,17 +30,60 @@ const images = [
     }
 ];
 
+//"forEach" cycle cycles "images[]" and creates the carousel's content
 images.forEach((element, i) => {
 
+    //Creates a variable that's an empty string by default
     let imageClasses = "";
 
+    //"if...else" construct 
     if (i === 0) {
         imageClasses = "active";
+    } else {
+        imageClasses = null;
     }
 
-    carouselContainer.innerHTML += `<div class="carousel_img_container position-absolute top-0 start-0 ${imageClasses}">
-    <img src="${element.image}" alt="" class="w-100 h-100">
-    </div>`
+    const carouselImgContainer = document.createElement("div");
+
+    carouselContainer.append(carouselImgContainer);
+
+    carouselImgContainer.classList.add("carousel_img_container", "position-absolute", "top-0", "start-0", imageClasses);
+
+    const carouselImg = document.createElement("img");
+
+    carouselImgContainer.append(carouselImg);
+
+    carouselImg.setAttribute("src", element.image);
+
+    carouselImg.classList.add("w-100", "h-100");
+
+    const carouselTextContainer = document.createElement("div");
+
+    carouselImgContainer.append(carouselTextContainer);
+
+    carouselTextContainer.classList.add("carousel_text_container", "ps-2", "text-white");
+
+    const carouselImgTitle = document.createElement("h4");
+
+    carouselTextContainer.append(carouselImgTitle);
+
+    carouselImgTitle.innerHTML += element.title;
+
+    const carouselImgText = document.createElement("p");
+
+    carouselTextContainer.append(carouselImgText);
+
+    carouselImgText.innerHTML += element.text;
+
+    
+
+    // carouselContainer.innerHTML += `<div class="carousel_img_container position-absolute top-0 start-0 ${imageClasses}">
+    // <img src="${element.image}" alt="" class="w-100 h-100">
+    // <div class="carousel_text_container ps-2 text-white">
+    // <h4>${element.title}</h4>
+    // <p>${element.text}</p>
+    // </div>
+    // </div>`
 
 })
 
